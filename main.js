@@ -30,7 +30,7 @@ adapter.on('ready', function () {
 
 function main() {
     setNameInstanceAdapter(adapter.config.name || "Humidifier");
-    
+
     adapter.setState('info.name', adapter.config.name, true);
     adapter.setState('info.address', adapter.config.ip, true);
     adapter.setState('info.token', adapter.config.token, true);
@@ -56,10 +56,10 @@ function setNameInstanceAdapter(name) {
 
     let instanceName = adapter.name + '.' + adapter.instance;
 
-    adapter.objects.getObject(instanceName, function (err, obj) {
+    adapter.getObject(instanceName, function (err, obj) {
         if(err) return adapter.log.error(err), false;
-        
+
         obj.common.name = name;
-        adapter.objects.setObject(instanceName, obj);
+        adapter.setObject(instanceName, obj);
     });
 }
